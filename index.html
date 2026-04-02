@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI KeySearch – Busca Orgânica nas Melhores IAs</title>
+  <meta name="description" content="Pesquise palavras-chave nas melhores plataformas de Inteligência Artificial do mundo de forma rápida e gratuita."/>
+
+  <!-- ✅ GOOGLE ADSENSE – substitua ca-pub-XXXXXXXXXXXXXXXX pelo seu Publisher ID -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --bg: #07080f;
+      --surface: #0f1120;
+      --border: #1e2240;
+      --accent: #4f8aff;
+      --accent2: #a259ff;
+      --text: #e8eaf6;
+      --muted: #6b7280;
+      --card: #12152a;
+      --glow: rgba(79,138,255,0.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── BACKGROUND MESH ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(79,138,255,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(162,89,255,0.10) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── LAYOUT ── */
+    .wrapper { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 20px 60px; }
+
+    /* ── HEADER ── */
+    header {
+      text-align: center;
+      padding: 60px 0 32px;
+      animation: fadeDown .7s ease both;
+    }
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 6vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+    .logo-icon { font-size: 2rem; -webkit-text-fill-color: initial; }
+    header p {
+      color: var(--muted);
+      margin-top: 10px;
+      font-size: .97rem;
+      letter-spacing: .02em;
+    }
+
+    /* ── AD TOP ── */
+    .ad-banner {
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+      margin-bottom: 28px;
+      font-size: .75rem;
+      color: var(--muted);
+      animation: fadeUp .6s .1s ease both;
+    }
+    .ad-banner ins { display: block; }
+
+    /* ── SEARCH BOX ── */
+    .search-wrap {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 28px;
+      animation: fadeUp .6s .2s ease both;
+    }
+    .search-input {
+      flex: 1;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      color: var(--text);
+      font-size: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      outline: none;
+      transition: border-color .25s, box-shadow .25s;
+    }
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--glow);
+    }
+    .search-input::placeholder { color: var(--muted); }
+
+    .btn-search {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border: none;
+      border-radius: 12px;
+      padding: 16px 28px;
+      color: #fff;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      cursor: pointer;
+      transition: opacity .2s, transform .15s;
+      white-space: nowrap;
+    }
+    .btn-search:hover { opacity: .88; transform: translateY(-1px); }
+    .btn-search:active { transform: scale(.97); }
+
+    /* ── PLATFORM FILTER ── */
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 32px;
+      animation: fadeUp .6s .3s ease both;
+    }
+    .filter-btn {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 50px;
+      padding: 7px 16px;
+      color: var(--muted);
+      font-size: .82rem;
+      cursor: pointer;
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(79,138,255,.08);
+    }
+    .filter-btn span { font-size: 1rem; }
+
+    /* ── RESULTS GRID ── */
+    .results-grid {
+      display: grid;
+      gap: 16px;
+      animation: fadeUp .5s .1s ease both;
+    }
+
+    .platform-card {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 24px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color .25s, transform .2s, box-shadow .25s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .platform-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 60%, rgba(79,138,255,0.05));
+      pointer-events: none;
+    }
+    .platform-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(79,138,255,.13);
+    }
+
+    .plat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .plat-info { flex: 1; }
+    .plat-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+    .plat-desc { color: var(--muted); font-size: .82rem; line-height: 1.4; }
+    .plat-tag {
+      font-size: .72rem;
+      background: rgba(79,138,255,.12);
+      color: var(--accent);
+      border-radius: 6px;
+      padding: 3px 8px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .plat-arrow { color: var(--muted); font-size: 1.2rem; flex-shrink: 0; }
+
+    /* ── AD MIDDLE ── */
+    .ad-mid { margin: 32px 0; }
+
+    /* ── EMPTY STATE ── */
+    .empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+    }
+    .empty .icon { font-size: 3rem; margin-bottom: 12px; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      margin-top: 48px;
+      color: var(--muted);
+      font-size: .78rem;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:none; } }
+    @keyframes fadeUp   { from { opacity:0; transform:translateY(16px);  } to { opacity:1; transform:none; } }
+
+    @media (max-width: 560px) {
+      .search-wrap { flex-direction: column; }
+      .btn-search { width: 100%; }
+      .platform-card { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-badge"><span class="logo-icon">🔍</span> AI KeySearch</div>
+    <p>Busca orgânica de palavras-chave nas melhores plataformas de Inteligência Artificial</p>
+  </header>
+
+  <!-- ✅ ANÚNCIO GOOGLE ADSENSE – TOPO -->
+  <div class="ad-banner">
+    <small>Publicidade</small>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="1111111111"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- BUSCA -->
+  <div class="search-wrap">
+    <input
+      id="searchInput"
+      class="search-input"
+      type="text"
+      placeholder="Digite sua palavra-chave ou pergunta…"
+      autocomplete="off"
+      autofocus
+    />
+    <button class="btn-search" onclick="doSearch()">Buscar nas IAs →</button>
+  </div>
+
+  <!-- FILTROS -->
+  <div class="filter-row" id="filters"></div>
+
+  <!-- RESULTADOS -->
+  <div class="results-grid" id="results"></div>
+
+  <!-- ✅ ANÚNCIO GOOGLE ADSENSE – MEIO -->
+  <div class="ad-mid ad-banner">
+    <small>Publicidade</small>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="2222222222"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <footer>
+    © 2025 AI KeySearch · Todos os direitos reservados ·
+    <a href="#" style="color:var(--accent);text-decoration:none;">Política de Privacidade</a>
+  </footer>
+</div>
+
+<script>
+  // ── PLATAFORMAS DE IA ──────────────────────────────────────────────
+  const platforms = [
+    {
+      id: 'chatgpt',
+      name: 'ChatGPT',
+      icon: '🤖',
+      color: '#10a37f',
+      desc: 'Modelo GPT-4o da OpenAI – líder em raciocínio e escrita.',
+      tag: 'OpenAI',
+      category: 'Geral',
+      url: q => `https://chatgpt.com/?q=${encodeURIComponent(q)}`
+    },
+    {
+      id: 'claude',
+      name: 'Claude',
+      icon: '🧠',
+      color: '#d97706',
+      desc: 'IA da Anthropic focada em segurança e respostas longas.',
+      tag: 'Anthropic',
+      category: 'Geral',
+      url: q => `https://claude.ai/new?q=${encodeURIComponent(q)}`
+    },
+    {
+      id: 'gemini',
+      name: 'Gemini',
+      icon: '✨',
+      color: '#4285f4',
+      desc: 'Multimodal do Google com acesso à web em tempo real.',
+      tag: 'Google',
+      category: 'Geral',
+      url: q => `https://gemini.google.com/app?q=${encodeURIComponent(q)}`
+    },
+    {
+      id: 'perplexity',
+      name: 'Perplexity AI',
+      icon: '🔎',
+      color: '#6366f1',
+      desc: 'Motor de busca com IA – respostas com fontes citadas.',
+      tag: 'Busca',
+      category: 'Busca',
+      url: q => `https://www.perplexity.ai/search?q=${encodeURIComponent(q)}`
+    },
+    {
+      id: 'copilot',
+      name: 'Microsoft Copilot',
+      icon: '🪟',
+      color: '#0078d4',
+      desc: 'IA da Microsoft integrada ao Bing com acesso à internet.',
+      tag: 'Microsoft',
+      category: 'Busca',
+      url: q => `https://copilot.microsoft.com/?q=${encodeURIComponent(q)}`
+    },
+    {
+      id: 'grok',
+      name: 'Grok',
+      icon: '⚡',
+      color: '#e7000b',
+      desc: 'IA da xAI integrada ao X (Twitter) com dados em tempo real.',
+      tag: 'xAI',
+      category: 'Geral',
+      url: q => `https://grok.com/?q=${encodeURIComponent(q)}`
+    },
+    {
+      id: 'mistral',
+      name: 'Mistral Le Chat',
+      icon: '🌬️',
+      color: '#ff6b35',
+      desc: 'Modelos open-source europeus com alto desempenho.',
+      tag: 'Mistral',
+      category: 'Open Source',
+      url: q => `https://chat.mistral.ai/chat?q=${encodeURIComponent(q)}`
+    },
+    {
+      id: 'meta',
+      name: 'Meta AI',
+      icon: '🦙',
+      color: '#0082fb',
+      desc: 'LLaMA da Meta disponível no WhatsApp, Instagram e web.',
+      tag: 'Meta',
+      category: 'Geral',
+      url: q => `https://www.meta.ai/?q=${encodeURIComponent(q)}`
+    },
+    {
+      id: 'poe',
+      name: 'Poe',
+      icon: '🎯',
+      color: '#8b5cf6',
+      desc: 'Agregador da Quora com acesso a múltiplos modelos de IA.',
+      tag: 'Quora',
+      category: 'Agregador',
+      url: q => `https://poe.com/search?q=${encodeURIComponent(q)}`
+    },
+    {
+      id: 'huggingface',
+      name: 'HuggingChat',
+      icon: '🤗',
+      color: '#ffbd2e',
+      desc: 'Chat open-source do Hugging Face com vários modelos.',
+      tag: 'Open Source',
+      category: 'Open Source',
+      url: q => `https://huggingface.co/chat/?q=${encodeURIComponent(q)}`
+    },
+    {
+      id: 'you',
+      name: 'You.com',
+      icon: '🔮',
+      color: '#06b6d4',
+      desc: 'Buscador com IA que exibe fontes ao lado das respostas.',
+      tag: 'Busca',
+      category: 'Busca',
+      url: q => `https://you.com/search?q=${encodeURIComponent(q)}&tbm=youchat`
+    },
+    {
+      id: 'kagi',
+      name: 'Kagi AI',
+      icon: '🐦',
+      color: '#f59e0b',
+      desc: 'Buscador premium sem rastreamento com assistente IA.',
+      tag: 'Busca',
+      category: 'Busca',
+      url: q => `https://kagi.com/search?q=${encodeURIComponent(q)}`
+    },
+  ];
+
+  // ── CATEGORIAS ─────────────────────────────────────────────────────
+  const categories = ['Todas', 'Geral', 'Busca', 'Open Source', 'Agregador'];
+  let activeCategory = 'Todas';
+  let currentQuery = '';
+
+  // ── RENDER FILTROS ─────────────────────────────────────────────────
+  function renderFilters() {
+    const row = document.getElementById('filters');
+    row.innerHTML = '';
+    categories.forEach(cat => {
+      const btn = document.createElement('button');
+      btn.className = 'filter-btn' + (cat === activeCategory ? ' active' : '');
+      btn.innerHTML = `<span>${catIcon(cat)}</span> ${cat}`;
+      btn.onclick = () => { activeCategory = cat; renderFilters(); renderCards(); };
+      row.appendChild(btn);
+    });
+  }
+  function catIcon(c) {
+    return { 'Todas':'🌐','Geral':'🤖','Busca':'🔎','Open Source':'🐙','Agregador':'🎯' }[c] || '⚙️';
+  }
+
+  // ── RENDER CARDS ───────────────────────────────────────────────────
+  function renderCards() {
+    const container = document.getElementById('results');
+    const q = currentQuery.trim();
+    const filtered = platforms.filter(p =>
+      activeCategory === 'Todas' || p.category === activeCategory
+    );
+
+    if (filtered.length === 0) {
+      container.innerHTML = `<div class="empty"><div class="icon">🤷</div><p>Nenhuma plataforma nesta categoria.</p></div>`;
+      return;
+    }
+
+    container.innerHTML = filtered.map(p => `
+      <a class="platform-card"
+         href="${q ? p.url(q) : p.url('inteligência artificial')}"
+         target="_blank" rel="noopener noreferrer"
+         title="Pesquisar '${q || '…'}' no ${p.name}">
+        <div class="plat-icon" style="background:${p.color}22">
+          <span style="font-size:1.6rem">${p.icon}</span>
+        </div>
+        <div class="plat-info">
+          <div class="plat-name">
+            ${p.name}
+            <span class="plat-tag">${p.tag}</span>
+          </div>
+          <div class="plat-desc">${p.desc}</div>
+        </div>
+        <div class="plat-arrow">→</div>
+      </a>
+    `).join('');
+  }
+
+  // ── BUSCA ──────────────────────────────────────────────────────────
+  function doSearch() {
+    const input = document.getElementById('searchInput');
+    currentQuery = input.value.trim();
+    if (!currentQuery) { input.focus(); return; }
+    renderCards();
+    // Abre automaticamente na primeira plataforma filtrada
+    const first = platforms.find(p => activeCategory === 'Todas' || p.category === activeCategory);
+    if (first) window.open(first.url(currentQuery), '_blank');
+  }
+
+  // Enter para buscar
+  document.getElementById('searchInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') doSearch();
+  });
+
+  // ── INIT ───────────────────────────────────────────────────────────
+  renderFilters();
+  renderCards();
+</script>
+</body>
+</html>
